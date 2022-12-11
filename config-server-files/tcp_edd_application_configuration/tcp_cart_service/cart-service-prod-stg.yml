@@ -1,0 +1,15 @@
+server:
+   port: 9001
+   servlet:
+      context-path: /api/stateful/cart/v1
+performance:
+   service:
+      enabled: true
+SFCC:
+   shortCode: gynyo724
+   organizationId: f_ecom_zzrh_001
+   siteId: TCP
+   clientId: df002850-b127-4c82-b405-4e2c2933892b
+   cart:
+      connectTimeout: 100000
+      readTimeout: 100000

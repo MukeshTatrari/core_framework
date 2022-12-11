@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: config-server
+    in-service: "true"
+  name: config-server
+spec:
+  minReadySeconds: 10
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: config-server
+      in-service: "true"
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 20%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: config-server
+        in-service: "true"
+    spec:
+      containers:
+      - image: 812436859307.dkr.ecr.us-west-2.amazonaws.com/edd/tcp_edd_configuration_server:$IMAGE_TAG
+        env:
+        - name: "CONFIGURATION_STORE_PATH"
+          value: "https://bitbucket.org/TCP_BitBucket_Admin/tcp_edd_application_configuration.git"
+        - name: SPRING_CLOUD_CONFIG_SERVER_GIT_BASEDIR
+          value: "/opt/tcp/data"
+        - name: SERVER_PORT
+          value: "2020"          
+        - name: SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: git-user-pass
+        - name: SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: git-user-pass
+        envFrom:
+        - configMapRef:
+            name: edd-config-server-configs
+        imagePullPolicy: Always
+        name: config-server
+        ports:
+        - containerPort: 2020
+          name: app-port
+          protocol: TCP
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /config/v1.0/actuator/health
+            port: 2020
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /config/v1.0/actuator/health
+            port: 2020
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2560Mi
+          requests:
+            cpu: "1"
+            memory: 2560Mi         
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

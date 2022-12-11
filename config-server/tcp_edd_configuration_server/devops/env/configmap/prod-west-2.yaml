@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: edd-config-server-configs
+data:
+  SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "b-2.edd-kafka.8ee07g.c4.kafka.us-west-2.amazonaws.com:9092,b-3.edd-kafka.8ee07g.c4.kafka.us-west-2.amazonaws.com:9092,b-4.edd-kafka.8ee07g.c4.kafka.us-west-2.amazonaws.com:9092"
+  SPRING_CLOUD_STREAM_KAFKA_BINDER_ZKNODES: "z-1.edd-kafka.8ee07g.c4.kafka.us-west-2.amazonaws.com:2181,z-3.edd-kafka.8ee07g.c4.kafka.us-west-2.amazonaws.com:2181,z-2.edd-kafka.8ee07g.c4.kafka.us-west-2.amazonaws.com:2181"

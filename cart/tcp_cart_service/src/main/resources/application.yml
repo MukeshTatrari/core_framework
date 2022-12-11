@@ -1,0 +1,36 @@
+server:
+   port: 9001
+   servlet:
+      context-path: /api/stateful/cart/v1
+performance:
+   service:
+      enabled: true
+product:
+   name: defaultProduct
+soap:
+   client:
+      enabled: true
+      contextPath: com.example.schemas.cart
+      serviceurl: localhost:8080/v1/cart
+SFCC:
+   shortCode: gynyo724
+   organizationId: f_ecom_zzrh_001
+   siteId: TCP
+   version: v1
+   clientId: df002850-b127-4c82-b405-4e2c2933892b
+   auth:
+      username: mchandra
+      password: Muk@1234
+   cart:
+      connectTimeout: 100000
+      readTimeout: 100000
+      url:
+         bodyType: credentials
+         baseUrl: https://${SFCC.shortCode}.api.commercecloud.salesforce.com
+         tokenUri: /customer/shopper-customers/${SFCC.version}/organizations/${SFCC.organizationId}/customers/actions/login?siteId=${SFCC.siteId}&clientId=${SFCC.clientId}
+         getCartUri: /checkout/shopper-baskets/${SFCC.version}/organizations/${SFCC.organizationId}/baskets/paramBasketId?siteId=${SFCC.siteId}
+         createCartUri: /checkout/shopper-baskets/${SFCC.version}/organizations/${SFCC.organizationId}/baskets?siteId=${SFCC.siteId}
+         addItemsUri: /checkout/shopper-baskets/${SFCC.version}/organizations/${SFCC.organizationId}/baskets/paramBasketId/items?siteId=${SFCC.siteId}
+   core:
+      url:
+         tokenUrl: https://${SFCC.shortCode}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/${SFCC.organizationId}/customers/actions/login?siteId=${SFCC.siteId}&clientId=${SFCC.clientId}

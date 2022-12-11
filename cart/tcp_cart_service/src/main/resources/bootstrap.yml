@@ -1,0 +1,16 @@
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+    security:
+        enabled: false
+spring:
+    application:
+        name: cart-service
+    cloud:
+        config:
+            uri: ${configserver}/config/v1.0
+    jackson:
+        serialization:
+            FAIL_ON_EMPTY_BEANS: false

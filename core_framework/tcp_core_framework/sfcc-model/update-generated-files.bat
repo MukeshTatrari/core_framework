@@ -1,0 +1,2 @@
+
+gci .\target\generated-sources\raml-to-jaxrs-maven-plugin\ *ErrorResponse.java -recurse | ForEach { (Get-Content $_ | ForEach {$_ -replace "ErrorResponse extends ErrorResponse", "ErrorResponse"}) | Set-Content $_}

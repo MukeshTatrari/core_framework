@@ -1,0 +1,8 @@
+mvn clean test compile
+cls
+mvn clean install test
+cls
+mvn clean
+mvn test compile 
+cls
+doskey /HISTORY > history.txt

@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tcp.core.framework</groupId>
+		<artifactId>core_framework</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>sfcc-core</artifactId>
+	<name>sfcc-core</name>
+	<description>SFCC Core is used to connect to sfcc api's</description>
+	<properties>
+		<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.tcp.core.framework</groupId>
+			<artifactId>ms-core</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

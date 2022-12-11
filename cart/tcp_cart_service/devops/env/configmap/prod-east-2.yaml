@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: cart-service-configs
+data:
+  SPRING_CLOUD_CONFIG_URI: "http://config-server-svc:1010/config/v1.0"
+  SPRING_CLOUD_CONFIG_LABEL: "release_sfcc_phase1"
+  JAVA_OPTS: "-XX:+UseG1GC -Xms2560m -Xmx2560m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m -XX:G1HeapRegionSize=1m -Xss300k -XX:G1ReservePercent=15 -XX:MaxGCPauseMillis=300 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=2 -XX:G1ConcRefinementThreads=5 -XX:InitiatingHeapOccupancyPercent=40 -XX:CompileThreshold=20000 -XX:CICompilerCount=2 -XX:+OptimizeStringConcat -XX:+ExplicitGCInvokesConcurrent -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:CompressedClassSpaceSize=128m -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled -XX:NativeMemoryTracking=detail -XX:MaxDirectMemorySize=1024m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp -Djava.security.egd=file:/dev/./urandom"
+  APPDYNAMICS_AGENT_APPLICATION_NAME: edd-prod
+  APPDYNAMICS_AGENT_TIER_NAME: cart-service

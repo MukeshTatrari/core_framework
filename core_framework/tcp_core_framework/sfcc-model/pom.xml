@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tcp.core.framework</groupId>
+		<artifactId>core_framework</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>sfcc-model</artifactId>
+	<name>sfcc-model</name>
+	<dependencies>
+		<dependency>
+			<groupId>org.raml.jaxrs</groupId>
+			<artifactId>jaxrs-code-generator</artifactId>
+			<version>3.0.7</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.raml.jaxrs</groupId>
+				<artifactId>raml-to-jaxrs-maven-plugin</artifactId>
+				<version>3.0.7</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.raml.jaxrs</groupId>
+						<artifactId>feature-plugins</artifactId>
+						<version>3.0.5</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<outputDirectory>${basedir}/src/main/java/</outputDirectory> 
+					<generateTypesWith>
+						<value>jackson</value>
+					</generateTypesWith>
+					<skip>false</skip>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>products</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/product/products/products.raml</ramlFile>
+							<resourcePackage>com.tcp.model.product.products.resources</resourcePackage>
+							<modelPackage>com.tcp.model.product.products</modelPackage>
+							<supportPackage>com.tcp.model.product.products.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>catalogs</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/product/catalogs/catalogs.raml</ramlFile>
+							<resourcePackage>com.tcp.model.product.catalogs.resources</resourcePackage>
+							<modelPackage>com.tcp.model.product.catalogs</modelPackage>
+							<supportPackage>com.tcp.model.product.catalogs.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>shopper-products</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/product/shopper-products/shopper-products.raml</ramlFile>
+							<resourcePackage>com.tcp.model.product.shopper.products.resources</resourcePackage>
+							<modelPackage>com.tcp.model.product.shopper.products.catalogs</modelPackage>
+							<supportPackage>com.tcp.model.product.shopper.products.catalogs.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+
+
+					<execution>
+						<id>order</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/checkout/orders/orders.raml</ramlFile>
+							<resourcePackage>com.tcp.model.checkout.resources</resourcePackage>
+							<modelPackage>com.tcp.model.checkout</modelPackage>
+							<supportPackage>com.tcp.model.checkout.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>shopper-baskets</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/checkout/shopper-baskets/shopper-baskets.raml</ramlFile>
+							<resourcePackage>com.tcp.model.checkout.resources</resourcePackage>
+							<modelPackage>com.tcp.model.checkout</modelPackage>
+							<supportPackage>com.tcp.model.checkout.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>shopper-orders</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/checkout/shopper-orders/shopper-orders.raml</ramlFile>
+							<resourcePackage>com.tcp.model.checkout.resources</resourcePackage>
+							<modelPackage>com.tcp.model.checkout</modelPackage>
+							<supportPackage>com.tcp.model.checkout.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>customers</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/customer/customers/customers.raml</ramlFile>
+							<resourcePackage>com.tcp.model.customers.resources</resourcePackage>
+							<modelPackage>com.tcp.model.customers</modelPackage>
+							<supportPackage>com.tcp.model.customers.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>shopper-customers</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/customer/shopper-customers/shopper-customers.raml</ramlFile>
+							<resourcePackage>com.tcp.model.customers.resources</resourcePackage>
+							<modelPackage>com.tcp.model.customers</modelPackage>
+							<supportPackage>com.tcp.model.customers.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<!-- <execution> <id>shopper-login</id> <phase>test</phase> <configuration> 
+						<ramlFile>${basedir}/src/main/external-resources/apis/customer/shopper-login/shopper-login.raml</ramlFile> 
+						<resourcePackage>com.tcp.model.customer.shopper.login.resources</resourcePackage> 
+						<modelPackage>com.tcp.model.customer.shopper.login</modelPackage> <supportPackage>com.tcp.model.customer.shopper.login.support</supportPackage> 
+						<generateTypesWith> <value>jackson</value> </generateTypesWith> </configuration> 
+						<goals> <goal>generate</goal> </goals> </execution> -->
+
+
+					<execution>
+						<id>pricing-assignments</id>
+						<phase>test</phase>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/pricing/assignments/assignments.raml</ramlFile>
+							<resourcePackage>com.tcp.model.pricing.assignments.resources</resourcePackage>
+							<modelPackage>com.tcp.model.pricing.assignments</modelPackage>
+							<supportPackage>com.tcp.model.pricing.assignments.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<!-- <execution> <id>pricing-campaigns</id> <configuration> <ramlFile>${basedir}/src/main/external-resources/apis/pricing/campaigns/campaigns.raml</ramlFile> 
+						<resourcePackage>com.tcp.model.pricing.campaigns.resources</resourcePackage> 
+						<modelPackage>com.tcp.model.pricing.campaigns</modelPackage> <supportPackage>com.tcp.model.pricing.campaigns.support</supportPackage> 
+						<generateTypesWith> <value>jackson</value> </generateTypesWith> </configuration> 
+						<goals> <goal>generate</goal> </goals> </execution> -->
+					<!-- <execution> <id>pricing-gift-certificates</id> <configuration> 
+						<ramlFile>${basedir}/src/main/external-resources/apis/pricing/gift-certificates/gift-certificates.raml</ramlFile> 
+						<resourcePackage>com.tcp.model.pricing.gift.resources</resourcePackage> <modelPackage>com.tcp.model.pricing.gift</modelPackage> 
+						<supportPackage>com.tcp.model.pricing.gift.support</supportPackage> <generateTypesWith> 
+						<value>jackson</value> </generateTypesWith> </configuration> <goals> <goal>generate</goal> 
+						</goals> </execution> -->
+
+					<execution>
+						<id>pricing-coupons</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/pricing/coupons/coupons.raml</ramlFile>
+							<resourcePackage>com.tcp.model.pricing.coupons.resources</resourcePackage>
+							<modelPackage>com.tcp.model.pricing.coupons</modelPackage>
+							<supportPackage>com.tcp.model.pricing.coupons.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>pricing-promotions</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/pricing/promotions/promotions.raml</ramlFile>
+							<resourcePackage>com.tcp.model.pricing.promotions.resources</resourcePackage>
+							<modelPackage>com.tcp.model.pricing.promotions</modelPackage>
+							<supportPackage>com.tcp.model.pricing.promotions.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>pricing-shopper-gift-certificates</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/pricing/shopper-gift-certificates/shopper-gift-certificates.raml</ramlFile>
+							<resourcePackage>com.tcp.model.pricing.shopper.gift.certificates.resources</resourcePackage>
+							<modelPackage>com.tcp.model.pricing.shopper.gift.certificates</modelPackage>
+							<supportPackage>com.tcp.model.pricing.shopper.gift.certificates.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>pricing-shopper-promotions</id>
+						<phase>test</phase>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/pricing/shopper-promotions/shopper-promotions.raml</ramlFile>
+							<resourcePackage>com.tcp.model.pricing.shopper.promotions.resources</resourcePackage>
+							<modelPackage>com.tcp.model.pricing.shopper.promotions</modelPackage>
+							<supportPackage>com.tcp.model.pricing.shopper.promotions.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>pricing-source-code-groups</id>
+						<configuration>
+							<ramlFile>${basedir}/src/main/external-resources/apis/pricing/source-code-groups/source-code-groups.raml</ramlFile>
+							<resourcePackage>com.tcp.model.pricing.source.code.groups.resources</resourcePackage>
+							<modelPackage>com.tcp.model.pricing.source.code.groups</modelPackage>
+							<supportPackage>com.tcp.model.pricing.source.code.groups.support</supportPackage>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

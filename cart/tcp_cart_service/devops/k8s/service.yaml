@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /api/stateful/cart/v1/actuator/health
+  name: cart-service
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: app-port
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+  selector:
+    app: cart-service
+    in-service: "true"
+  sessionAffinity: None
+  type: NodePort
